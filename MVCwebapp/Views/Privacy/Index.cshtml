@@ -1,0 +1,30 @@
+﻿@model MVCWebApp.Models.VisitorEntry
+
+@{
+    ViewData["Title"] = "Privacy Page";
+
+    // Convert UTC to IST
+    TimeZoneInfo istZone = TimeZoneInfo.FindSystemTimeZoneById("Asia/Kolkata");
+    DateTime istTime = Model != null
+        ? TimeZoneInfo.ConvertTimeFromUtc(Model.VisitTime, istZone)
+        : DateTime.UtcNow; // Fallback in case Model is null
+}
+
+<div class="container mt-5">
+    <!-- Added margin-top (mt-5) -->
+    <h2 class="mb-4 text-center">Latest Visitor Info</h2> <!-- Centered & added spacing -->
+
+    <div class="card shadow-lg p-4">
+        <!-- Added card for better UI -->
+        @if (Model != null)
+        {
+            <p><strong>IP Address:</strong> @Model.IpAddress</p>
+            <p><strong>Visit Date:</strong> @istTime.ToString("dd/MM/yyyy")</p>
+            <p><strong>Visit Time:</strong> @istTime.ToString("hh:mm tt")</p>
+        }
+        else
+        {
+            <p class="text-muted">No visitor data available.</p>
+        }
+    </div>
+</div>

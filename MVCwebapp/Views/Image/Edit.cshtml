@@ -1,0 +1,18 @@
+﻿@model MVCWebApp.Models.ImageEntry
+
+<h2>Edit Image</h2>
+
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Id" />
+
+    <label>Current Image:</label><br />
+    <img src="@Url.Action("GetImage", new { id = Model.FileId })" width="200" /><br /><br />
+
+    <label>Change Image (Optional):</label>
+    <input type="file" name="file" /><br /><br />
+
+    <label>Text:</label>
+    <input type="text" asp-for="Text" class="form-control" /><br />
+
+    <button type="submit">Save Changes</button>
+</form>

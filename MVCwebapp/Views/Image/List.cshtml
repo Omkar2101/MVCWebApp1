@@ -1,0 +1,29 @@
+﻿@model List<MVCWebApp.Models.ImageEntry>
+
+@{
+    ViewData["Title"] = "Image List";
+}
+
+<h2>Uploaded Images</h2>
+
+<table border="1">
+    <tr>
+        <th>Image</th>
+        <th>Text</th>
+        <th>Actions</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <img src="@Url.Action("GetImage", new { id = item.FileId })" width="100" />
+            </td>
+            <td>@item.Text</td>
+            <td>
+                <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-primary">Edit</a>
+            </td>
+        </tr>
+    }
+
+</table>
