@@ -13,6 +13,7 @@ namespace MVCWebApp.Services
         private readonly IMongoDatabase _imageDatabase;
         private readonly GridFSBucket _gridFsBucket;
         private readonly string _visitorCollectionName;
+        public string VisitorCollectionName => _visitorCollectionName; // Expose as a public property
         private readonly string _userCollectionName;
         private readonly string _imageCollectionName;
         private readonly MongoClient _mongoClient;
