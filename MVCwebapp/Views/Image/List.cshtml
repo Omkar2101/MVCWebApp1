@@ -4,26 +4,62 @@
     ViewData["Title"] = "Image List";
 }
 
-<h2>Uploaded Images</h2>
+<h2 class="text-center mt-4">Uploaded Images</h2>
 
-<table border="1">
-    <tr>
-        <th>Image</th>
-        <th>Text</th>
-        <th>Actions</th>
-    </tr>
+<div class="container mt-4">
+    <div class="card shadow-lg p-4">
+        <table class="table table-bordered table-hover text-center align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>Image</th>
+                    <th>Text</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <img src="@Url.Action("GetImage", new { id = item.FileId })" class="img-thumbnail" width="100" />
+                        </td>
+                        <td>@item.Text</td>
+                        <td>
+                            <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-primary btn-sm">Edit</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                <img src="@Url.Action("GetImage", new { id = item.FileId })" width="100" />
-            </td>
-            <td>@item.Text</td>
-            <td>
-                <a href="@Url.Action("Edit", new { id = item.Id })" class="btn btn-primary">Edit</a>
-            </td>
-        </tr>
+<style>
+    .container {
+        max-width: 800px;
     }
 
-</table>
+    .card {
+        border-radius: 10px;
+        border: none;
+    }
+
+    .table {
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .img-thumbnail {
+        border-radius: 8px;
+        transition: transform 0.3s ease-in-out;
+    }
+
+        .img-thumbnail:hover {
+            transform: scale(1.1);
+        }
+
+    .btn {
+        font-weight: bold;
+        border-radius: 8px;
+    }
+</style>
